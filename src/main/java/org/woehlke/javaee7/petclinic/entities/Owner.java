@@ -56,7 +56,37 @@ public class Owner {
     @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String city;
-
+//INICIO DA MODIFICAÇÃO - 04/11    
+    @Column(name = "cep")
+    @NotEmpty
+    @Digits(fraction = 0, integer = 10)
+    private String cep;
+    
+    @Column(name = "logradouro")
+    @NotEmpty
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+    private String logradouro;
+    
+    @Column(name = "complemento")
+    @NotEmpty
+    @Digits(fraction = 0, integer = 10)
+    private String complemento;
+    
+    @Column(name = "bairro")
+    @NotEmpty
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+    private String bairro;
+    
+    @Column(name = "localidade")
+    @NotEmpty
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+    private String localidade;
+    
+    @Column(name = "uf")
+    @NotEmpty
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+    private String uf;
+// MODIFICADO ATÉ AQUI!!!
     @Column(name = "telephone")
     @NotEmpty
     @Digits(fraction = 0, integer = 10)
@@ -109,6 +139,54 @@ public class Owner {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     public String getTelephone() {
