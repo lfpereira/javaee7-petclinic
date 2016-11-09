@@ -187,7 +187,6 @@ public class Owner {
         this.uf = uf;
     }
 
-
     public String getTelephone() {
         return telephone;
     }

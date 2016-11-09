@@ -60,6 +60,24 @@
                         </f:facet>
                         <h:outputText id="complemento" value="#{owner.complemento}"/>
                     </rich:column>
+                    <rich:column sortBy="#{owner.bairro}" sortOrder="#{ownerSortingBean.sortOrderBairro}">
+                        <f:facet name="header">
+                            <a4j:commandLink value="#{msg.bairro}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToBairro}" />
+                        </f:facet>
+                        <h:outputText id="bairro" value="#{owner.bairro}"/>
+                    </rich:column>
+                    <rich:column sortBy="#{owner.localidade}" sortOrder="#{ownerSortingBean.sortOrderLocalidade}">
+                        <f:facet name="header">
+                            <a4j:commandLink value="#{msg.localidade}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToLocalidade}" />
+                        </f:facet>
+                        <h:outputText id="localidade" value="#{owner.localidade}"/>
+                    </rich:column>
+                    <rich:column sortBy="#{owner.uf}" sortOrder="#{ownerSortingBean.sortOrderUF}">
+                        <f:facet name="header">
+                            <a4j:commandLink value="#{msg.uf}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToUF}" />
+                        </f:facet>
+                        <h:outputText id="uf" value="#{owner.uf}"/>
+                    </rich:column>
                     
                 </rich:dataTable>
                 <rich:dataScroller for="ownersTable"

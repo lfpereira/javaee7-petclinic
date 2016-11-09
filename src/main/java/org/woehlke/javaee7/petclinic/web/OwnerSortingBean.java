@@ -144,7 +144,58 @@ public class OwnerSortingBean implements Serializable {
             sortOrderComplemento = SortOrder.ascending;
         }
     }
+    
+    public void setSortOrderToBairro(){
+        sortOrderName = SortOrder.unsorted;
+        sortOrderAddress = SortOrder.unsorted;
+        sortOrderCity = SortOrder.unsorted;
+        sortOrderTelephone = SortOrder.unsorted;
+        sortOrderCep = SortOrder.unsorted;
+        sortOrderLogradouro = SortOrder.unsorted;
+        sortOrderComplemento = SortOrder.unsorted;
+        sortOrderLocalidade = SortOrder.unsorted;
+        sortOrderUF = SortOrder.unsorted;
+        if(sortOrderBairro == SortOrder.ascending){
+            sortOrderBairro = SortOrder.descending;
+        } else {
+            sortOrderBairro = SortOrder.ascending;
+        }
+    }
+    
+    public void setSortOrderToLocalidade(){
+        sortOrderName = SortOrder.unsorted;
+        sortOrderAddress = SortOrder.unsorted;
+        sortOrderCity = SortOrder.unsorted;
+        sortOrderTelephone = SortOrder.unsorted;
+        sortOrderCep = SortOrder.unsorted;
+        sortOrderLogradouro = SortOrder.unsorted;
+        sortOrderComplemento = SortOrder.unsorted;
+        sortOrderBairro = SortOrder.unsorted;
+        sortOrderUF = SortOrder.unsorted;
+        if(sortOrderLocalidade == SortOrder.ascending){
+            sortOrderLocalidade = SortOrder.descending;
+        } else {
+            sortOrderLocalidade = SortOrder.ascending;
+        }
+    }
 
+    public void setSortOrderToUF(){
+        sortOrderName = SortOrder.unsorted;
+        sortOrderAddress = SortOrder.unsorted;
+        sortOrderCity = SortOrder.unsorted;
+        sortOrderTelephone = SortOrder.unsorted;
+        sortOrderCep = SortOrder.unsorted;
+        sortOrderLogradouro = SortOrder.unsorted;
+        sortOrderComplemento = SortOrder.unsorted;
+        sortOrderBairro = SortOrder.unsorted;
+        sortOrderLocalidade = SortOrder.unsorted;
+        if(sortOrderUF == SortOrder.ascending){
+            sortOrderUF = SortOrder.descending;
+        } else {
+            sortOrderUF = SortOrder.ascending;
+        }
+    }
+    
     public SortOrder getSortOrderName() {
         return sortOrderName;
     }
