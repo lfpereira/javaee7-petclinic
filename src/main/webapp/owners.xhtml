@@ -41,6 +41,26 @@
                         </f:facet>
                         <h:outputText id="telephone" value="#{owner.telephone}"/>
                     </rich:column>
+                    
+                    <rich:column sortBy="#{owner.cep}" sortOrder="#{ownerSortingBean.sortOrderCep}">
+                        <f:facet name="header">
+                            <a4j:commandLink value="#{msg.cep}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToCep}" />
+                        </f:facet>
+                        <h:outputText id="cep" value="#{owner.cep}"/>
+                    </rich:column>
+                    <rich:column sortBy="#{owner.logradouro}" sortOrder="#{ownerSortingBean.sortOrderLogradouro}">
+                        <f:facet name="header">
+                            <a4j:commandLink value="#{msg.logradouro}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToLogradouro}" />
+                        </f:facet>
+                        <h:outputText id="logradouro" value="#{owner.logradouro}"/>
+                    </rich:column>
+                    <rich:column sortBy="#{owner.complemento}" sortOrder="#{ownerSortingBean.sortOrderComplemento}">
+                        <f:facet name="header">
+                            <a4j:commandLink value="#{msg.complemento}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToComplemento}" />
+                        </f:facet>
+                        <h:outputText id="complemento" value="#{owner.complemento}"/>
+                    </rich:column>
+                    
                 </rich:dataTable>
                 <rich:dataScroller for="ownersTable"
                                    page="#{ownerController.scrollerPage}"
