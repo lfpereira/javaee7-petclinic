@@ -40,8 +40,7 @@
                             <a4j:commandLink value="#{msg.telephone}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToTelephone}" />
                         </f:facet>
                         <h:outputText id="telephone" value="#{owner.telephone}"/>
-                    </rich:column>
-                    
+                    </rich:column>  
                     <rich:column sortBy="#{owner.cep}" sortOrder="#{ownerSortingBean.sortOrderCep}">
                         <f:facet name="header">
                             <a4j:commandLink value="#{msg.cep}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToCep}" />

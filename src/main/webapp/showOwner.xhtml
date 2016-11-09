@@ -26,6 +26,24 @@
                     <h:outputLabel value="#{msg.telephone}" for="telephone"/>
                     <h:outputText id="telephone"
                                  value="#{ownerController.owner.telephone}"/>
+                    <h:outputLabel value="#{msg.cep}" for="cep"/>
+                    <h:outputText id="cep"
+                                 value="#{ownerController.owner.cep}"/>
+                    <h:outputLabel value="#{msg.lagradouro}" for="logradouro"/>
+                    <h:outputText id="logradouro"
+                                 value="#{ownerController.owner.logradouro}"/>
+                    <h:outputLabel value="#{msg.complemento}" for="complemento"/>
+                    <h:outputText id="complemento"
+                                 value="#{ownerController.owner.complemento}"/>
+                    <h:outputLabel value="#{msg.bairro}" for="bairro"/>
+                    <h:outputText id="bairro"
+                                 value="#{ownerController.owner.bairro}"/>
+                    <h:outputLabel value="#{msg.localidade}" for="localidade"/>
+                    <h:outputText id="localidade"
+                                 value="#{ownerController.owner.localidade}"/>
+                    <h:outputLabel value="#{msg.uf}" for="uf"/>
+                    <h:outputText id="uf"
+                                 value="#{ownerController.owner.uf}"/>
 
                     <h:commandButton id="edit" value="#{msg.editOwner}" style="float: left"
                                      action="#{ownerController.getEditForm()}" styleClass="btn"/>
