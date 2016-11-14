@@ -154,6 +154,8 @@ public class OwnerController implements Serializable {
         this.owner.setLogradouro("Av");
         this.owner.setComplemento("teste");
         
+        this.owner.setValidatedPhone("False");
+        
         return "newOwner.jsf";
     }
 

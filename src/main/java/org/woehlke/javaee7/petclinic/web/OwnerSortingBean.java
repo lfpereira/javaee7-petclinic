@@ -19,6 +19,7 @@ public class OwnerSortingBean implements Serializable {
     private SortOrder sortOrderAddress = SortOrder.unsorted;
     private SortOrder sortOrderCity = SortOrder.unsorted;
     private SortOrder sortOrderTelephone = SortOrder.unsorted;
+    private SortOrder sortOrderValidatedPhone = SortOrder.unsorted;
     private SortOrder sortOrderCep = SortOrder.unsorted;
     private SortOrder sortOrderLogradouro = SortOrder.unsorted;
     private SortOrder sortOrderComplemento = SortOrder.unsorted;
@@ -30,6 +31,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
@@ -47,6 +49,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderName = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
@@ -64,6 +67,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderName = SortOrder.unsorted;
         sortOrderAddress = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
@@ -82,6 +86,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
         sortOrderBairro = SortOrder.unsorted;
@@ -94,11 +99,30 @@ public class OwnerSortingBean implements Serializable {
         }
     }
     
+    public void setSortOrderToValidatedPhone(){
+        sortOrderName = SortOrder.unsorted;
+        sortOrderAddress = SortOrder.unsorted;
+        sortOrderCity = SortOrder.unsorted;
+        sortOrderCep = SortOrder.unsorted;
+        sortOrderTelephone = SortOrder.unsorted;
+        sortOrderLogradouro = SortOrder.unsorted;
+        sortOrderComplemento = SortOrder.unsorted;
+        sortOrderBairro = SortOrder.unsorted;
+        sortOrderLocalidade = SortOrder.unsorted;
+        sortOrderUF = SortOrder.unsorted;
+        if(sortOrderValidatedPhone == SortOrder.ascending){
+            sortOrderValidatedPhone = SortOrder.descending;
+        } else {
+            sortOrderValidatedPhone = SortOrder.ascending;
+        }
+    }
+    
     public void setSortOrderToCep(){
         sortOrderName = SortOrder.unsorted;
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
         sortOrderBairro = SortOrder.unsorted;
@@ -116,6 +140,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
         sortOrderBairro = SortOrder.unsorted;
@@ -133,6 +158,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderBairro = SortOrder.unsorted;
@@ -150,6 +176,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
@@ -167,6 +194,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
@@ -184,6 +212,7 @@ public class OwnerSortingBean implements Serializable {
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
+        sortOrderValidatedPhone = SortOrder.unsorted;
         sortOrderCep = SortOrder.unsorted;
         sortOrderLogradouro = SortOrder.unsorted;
         sortOrderComplemento = SortOrder.unsorted;
@@ -226,6 +255,14 @@ public class OwnerSortingBean implements Serializable {
 
     public void setSortOrderTelephone(SortOrder sortOrderTelephone) {
         this.sortOrderTelephone = sortOrderTelephone;
+    }
+    
+    public SortOrder getSortOrderValidatedPhone() {
+        return sortOrderTelephone;
+    }
+
+    public void setSortOrderValidatedPhone(SortOrder sortOrderValidatedPhone) {
+        this.sortOrderValidatedPhone = sortOrderValidatedPhone;
     }
 
     public SortOrder getSortOrderCep() {

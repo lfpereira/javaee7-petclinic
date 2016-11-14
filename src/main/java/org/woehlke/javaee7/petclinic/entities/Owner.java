@@ -94,8 +94,12 @@ public class Owner {
 // MODIFICADO ATÉ AQUI!!!
     @Column(name = "telephone")
     @NotEmpty
-    @Digits(fraction = 0, integer = 10)
+    @Digits(fraction = 0, integer = 11)
     private String telephone;
+    
+    @Column(name = "validated_phone")
+    @NotEmpty
+    private String validatedPhone;
 
     @IndexedEmbedded
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner",fetch = FetchType.EAGER)
@@ -201,6 +205,14 @@ public class Owner {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
+    
+    public String getValidatedPhone() {
+        return validatedPhone;
+    }
+
+    public void setValidatedPhone(String validatedPhone) {
+        this.validatedPhone = validatedPhone;
+    }
 
     public List<Pet> getPets() {
         List<Pet> list = new ArrayList<>();
@@ -229,7 +241,8 @@ public class Owner {
         if (lastName != null ? !lastName.equals(owner.lastName) : owner.lastName != null) return false;
         if (pets != null ? !pets.equals(owner.pets) : owner.pets != null) return false;
         if (telephone != null ? !telephone.equals(owner.telephone) : owner.telephone != null) return false;
-
+        if (validatedPhone != null ? !validatedPhone.equals(owner.validatedPhone) : owner.validatedPhone != null) return false;
+        //if (validatedPhone != owner.validatedPhone) return false;
         return true;
     }
 
@@ -242,9 +255,10 @@ public class Owner {
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         result = 31 * result + (pets != null ? pets.hashCode() : 0);
+        result = 31 * result + (validatedPhone != null ? validatedPhone.hashCode() : 0);
         return result;
     }
-    
+
     @Override
     public String toString() {
         return "Owner{" +
@@ -254,6 +268,7 @@ public class Owner {
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", telephone='" + telephone + '\'' +
+                ", validatedPhone='" + validatedPhone + '\'' +
                 ", cep='" + cep + '\'' +
                 ", logradouro='" + logradouro + '\'' +
                 ", complemento='" + complemento + '\'' +

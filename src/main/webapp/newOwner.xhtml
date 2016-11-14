@@ -40,7 +40,7 @@
             </h:panelGrid>
              
             <h:panelGrid id="grid3" columns="2">    
-                <h:outputLabel value="#{msg.logradouro}" for="logradouro"/>                
+                <h:outputLabel value="#{msg.logradouro}" for="logradouro"/>
                 <h:inputText id="logradouro" styleClass="form-control"
                              value="#{ownerController.owner.logradouro}"/>
                 <h:outputLabel value="#{msg.complemento}" for="complemento"/>
@@ -55,6 +55,10 @@
                 <h:outputLabel value="#{msg.uf}" for="uf"/>
                 <h:inputText id="uf" styleClass="form-control"
                              value="#{ownerController.owner.uf}"/>
+                
+                 <h:outputLabel value="#{msg.validatedPhone}" for="validatedPhone"/>
+                <h:inputText id="validatedPhone" styleClass="form-control"
+                             value="#{ownerController.owner.validatedPhone}"/>
             </h:panelGrid>
 
             <h:commandButton id="save" value="#{msg.save}"
