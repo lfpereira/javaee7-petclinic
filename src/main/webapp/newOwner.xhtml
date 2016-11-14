@@ -29,10 +29,18 @@
                 <h:outputLabel value="#{msg.telephone}" for="telephone"/>
                 <h:inputText id="telephone" styleClass="form-control"
                              value="#{ownerController.owner.telephone}"/>
+            </h:panelGrid> 
+                
+            <h:panelGrid id="grid2" columns="3">
                 <h:outputLabel value="#{msg.cep}" for="cep"/>
                 <h:inputText id="cep" styleClass="form-control"
                              value="#{ownerController.owner.cep}"/>
-                <h:outputLabel value="#{msg.logradouro}" for="logradouro"/>
+                <h:commandButton id="buscar" value="#{msg.buscar}"
+                             action="#{ownerController.buscarCEP2}" styleClass="btn"/>
+            </h:panelGrid>
+             
+            <h:panelGrid id="grid3" columns="2">    
+                <h:outputLabel value="#{msg.logradouro}" for="logradouro"/>                
                 <h:inputText id="logradouro" styleClass="form-control"
                              value="#{ownerController.owner.logradouro}"/>
                 <h:outputLabel value="#{msg.complemento}" for="complemento"/>

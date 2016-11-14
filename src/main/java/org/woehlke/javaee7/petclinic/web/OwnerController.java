@@ -1,5 +1,7 @@
 package org.woehlke.javaee7.petclinic.web;
 
+import java.io.IOException;
+import java.io.InputStream;
 import org.woehlke.javaee7.petclinic.dao.OwnerDao;
 import org.woehlke.javaee7.petclinic.dao.PetDao;
 import org.woehlke.javaee7.petclinic.dao.PetTypeDao;
@@ -14,8 +16,26 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.json.stream.JsonParser;
+import javax.json.stream.JsonParser.Event;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 /**
  * Created with IntelliJ IDEA.
@@ -121,6 +141,19 @@ public class OwnerController implements Serializable {
 
     public String getNewOwnerForm(){
         this.owner = new Owner();
+        
+        this.owner.setFirstName("Luis Felipe");
+        this.owner.setLastName("Pereira");
+        this.owner.setAddress("Av Pernambuco");
+        this.owner.setBairro("Navegantes");
+        this.owner.setCity("Porto Alegre");
+        this.owner.setLocalidade("localidade");
+        this.owner.setTelephone("5197188511");
+        this.owner.setUf("RS");        
+        this.owner.setCep("90240000");
+        this.owner.setLogradouro("Av");
+        this.owner.setComplemento("teste");
+        
         return "newOwner.jsf";
     }
 
@@ -208,5 +241,65 @@ public class OwnerController implements Serializable {
 
     public int getScrollerPage() {
         return scrollerPage;
+    }
+    
+    public void buscarCEP() throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException{
+        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+            public java.security.cert.X509Certificate[] getAcceptedIssuers() { return null; }
+            public void checkClientTrusted(X509Certificate[] certs, String authType) { }
+            public void checkServerTrusted(X509Certificate[] certs, String authType) { }
+
+        } };
+
+        SSLContext sc = SSLContext.getInstance("SSL");
+        sc.init(null, trustAllCerts, new java.security.SecureRandom());
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+        // Create all-trusting host name verifier
+        HostnameVerifier allHostsValid = new HostnameVerifier() {
+            public boolean verify(String hostname, SSLSession session) { return true; }
+        };
+        // Install the all-trusting host verifier
+        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+        URL urlDoWebService = new URL("http://viacep.com.br/ws/" + owner.getCep() + "/json/");
+        InputStream streamParaLeitura = urlDoWebService.openStream();
+
+        
+        // Cria o nosso leitor
+        // O Stream informado se refere a uma URL, mas poderíamos estar lendo de um arquivo, por ex.
+        JsonReader leitorDeObjeto = Json.createReader(streamParaLeitura);
+
+        //Faz a leitura e retorna o nosso objeto
+        JsonObject ceps = leitorDeObjeto.readObject();
+
+        //Construindo um Objeto da nossa aplicação com as informações de ISBN
+        //Isbn isbn = new Isbn();
+
+        //Ajusta os valores, lendo a informação do JSON.
+        owner.setCep(ceps.getJsonObject("cep").getString("cep"));
+        owner.setLogradouro(ceps.getJsonObject("logradouro").getString("logradouro"));
+    }
+    
+    public void buscarCEP2() throws MalformedURLException, IOException{
+        URL url = new URL("http://viacep.com.br/ws/" + owner.getCep() + "/json/");
+        try (InputStream is = url.openStream();
+        JsonParser parser = Json.createParser(is)) {
+        while (parser.hasNext()) {
+            Event e = parser.next();
+            if (e == Event.KEY_NAME) {
+                switch (parser.getString()) {
+                    case "cep":
+                        parser.next();
+                        owner.setCep(parser.getString());
+                        System.out.print(": ");
+                    break;
+                    case "logradouro":
+                        parser.next();
+                        owner.setLogradouro(parser.getString());
+                    break;
+                    }
+                }
+            }
+        }
     }
 }

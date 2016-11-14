@@ -1,5 +1,9 @@
 package org.woehlke.javaee7.petclinic.entities;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
@@ -20,6 +24,9 @@ import javax.persistence.GeneratedValue;
 import javax.validation.constraints.Digits;
 
 import java.util.*;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 /**
  * Created with IntelliJ IDEA.
@@ -237,7 +244,7 @@ public class Owner {
         result = 31 * result + (pets != null ? pets.hashCode() : 0);
         return result;
     }
-
+    
     @Override
     public String toString() {
         return "Owner{" +
