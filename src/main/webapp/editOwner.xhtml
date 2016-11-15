@@ -38,6 +38,14 @@
                     <h:commandButton id="validatePhone" value="#{msg.validatePhone}"
                                      action="#{ownerController.validatePhone}" styleClass="btn"/>
                 </h:panelGrid>
+                
+                <h:panelGrid id="gridZipcode" columns="3">
+                    <h:outputLabel value="#{msg.zipcode}" for="zipcode"/>
+                    <h:inputText id="zipcode" styleClass="form-control"
+                                 value="#{ownerController.owner.zipcode}"/>
+                    <h:commandButton id="search" value="#{msg.search}"
+                                     action="#{ownerController.searchZipcode}" styleClass="btn"/>
+                 </h:panelGrid>
 
                 <h:panelGrid id="gridAddress" columns="2">
                     <h:outputLabel value="#{msg.address}" for="address"/>
@@ -46,9 +54,6 @@
                     <h:outputLabel value="#{msg.city}" for="city"/>
                     <h:inputText id="city" styleClass="form-control"
                                  value="#{ownerController.owner.city}"/>
-                    <h:outputLabel value="#{msg.zipcode}" for="zipcode"/>
-                    <h:inputText id="zipcode" styleClass="form-control"
-                                 value="#{ownerController.owner.zipcode}"/>
                     <h:outputLabel value="#{msg.number}" for="number"/>
                     <h:inputText id="number" styleClass="form-control"
                                  value="#{ownerController.owner.number}"/>

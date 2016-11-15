@@ -253,7 +253,7 @@ public class OwnerController implements Serializable {
         return scrollerPage;
     }
     
-    public void buscarCEP() throws MalformedURLException, IOException{
+    public void searchZipcode() throws MalformedURLException, IOException{
         URL url = new URL("http://viacep.com.br/ws/" + owner.getZipcode() + "/json/");
         try (InputStream is = url.openStream();
         JsonParser parser = Json.createParser(is)) {
