@@ -69,26 +69,21 @@ public class Owner {
     private String cep;
     
     @Column(name = "logradouro")
-    @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String logradouro;
     
     @Column(name = "complemento")
-    @NotEmpty
     private String complemento;
     
     @Column(name = "bairro")
-    @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String bairro;
     
     @Column(name = "localidade")
-    @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String localidade;
     
     @Column(name = "uf")
-    @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String uf;
 // MODIFICADO ATÉ AQUI!!!

@@ -263,44 +263,7 @@ public class OwnerController implements Serializable {
         return scrollerPage;
     }
     
-    public void buscarCEP() throws MalformedURLException, IOException, NoSuchAlgorithmException, KeyManagementException{
-        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-            public java.security.cert.X509Certificate[] getAcceptedIssuers() { return null; }
-            public void checkClientTrusted(X509Certificate[] certs, String authType) { }
-            public void checkServerTrusted(X509Certificate[] certs, String authType) { }
-
-        } };
-
-        SSLContext sc = SSLContext.getInstance("SSL");
-        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-
-        // Create all-trusting host name verifier
-        HostnameVerifier allHostsValid = new HostnameVerifier() {
-            public boolean verify(String hostname, SSLSession session) { return true; }
-        };
-        // Install the all-trusting host verifier
-        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-        URL urlDoWebService = new URL("http://viacep.com.br/ws/" + owner.getCep() + "/json/");
-        InputStream streamParaLeitura = urlDoWebService.openStream();
-
-        
-        // Cria o nosso leitor
-        // O Stream informado se refere a uma URL, mas poderíamos estar lendo de um arquivo, por ex.
-        JsonReader leitorDeObjeto = Json.createReader(streamParaLeitura);
-
-        //Faz a leitura e retorna o nosso objeto
-        JsonObject ceps = leitorDeObjeto.readObject();
-
-        //Construindo um Objeto da nossa aplicação com as informações de ISBN
-        //Isbn isbn = new Isbn();
-
-        //Ajusta os valores, lendo a informação do JSON.
-        owner.setCep(ceps.getJsonObject("cep").getString("cep"));
-        owner.setLogradouro(ceps.getJsonObject("logradouro").getString("logradouro"));
-    }
-    
-    public void buscarCEP2() throws MalformedURLException, IOException{
+    public void buscarCEP() throws MalformedURLException, IOException{
         URL url = new URL("http://viacep.com.br/ws/" + owner.getCep() + "/json/");
         try (InputStream is = url.openStream();
         JsonParser parser = Json.createParser(is)) {
@@ -311,11 +274,27 @@ public class OwnerController implements Serializable {
                     case "cep":
                         parser.next();
                         owner.setCep(parser.getString());
-                        System.out.print(": ");
+                        //System.out.print(": ");
                     break;
                     case "logradouro":
                         parser.next();
                         owner.setLogradouro(parser.getString());
+                    break;
+                    case "complemento":
+                        parser.next();
+                        owner.setComplemento(parser.getString());
+                    break;
+                    case "bairro":
+                        parser.next();
+                        owner.setBairro(parser.getString());
+                    break;
+                    case "localidade":
+                        parser.next();
+                        owner.setLocalidade(parser.getString());
+                    break;
+                    case "uf":
+                        parser.next();
+                        owner.setUf(parser.getString());
                     break;
                     }
                 }
