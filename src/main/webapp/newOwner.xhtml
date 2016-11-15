@@ -1,4 +1,4 @@
-    <ui:composition template="./template.xhtml"
+<ui:composition template="./template.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -6,9 +6,9 @@
                 xmlns:a4j="http://richfaces.org/a4j"
                 xmlns:rich="http://richfaces.org/rich">>
 
-        <ui:define name="content">
-            <h2 id="addNewOwner">#{msg.addNewOwner}</h2>
-            <h:form id="addNewOwnerForm">
+    <ui:define name="content">
+        <h2 id="addNewOwner">#{msg.addNewOwner}</h2>
+        <h:form id="addNewOwnerForm">
             <h:panelGroup>
                 <h:messages id="messages" layout="block" errorStyle="color: red"/>
             </h:panelGroup>
@@ -30,15 +30,15 @@
                 <h:inputText id="telephone" styleClass="form-control"
                              value="#{ownerController.owner.telephone}"/>
             </h:panelGrid> 
-                
+
             <h:panelGrid id="grid2" columns="3">
                 <h:outputLabel value="#{msg.cep}" for="cep"/>
                 <h:inputText id="cep" styleClass="form-control"
                              value="#{ownerController.owner.cep}"/>
                 <h:commandButton id="buscar" value="#{msg.buscar}"
-                             action="#{ownerController.buscarCEP2}" styleClass="btn"/>
+                                 action="#{ownerController.buscarCEP2}" styleClass="btn"/>
             </h:panelGrid>
-             
+
             <h:panelGrid id="grid3" columns="2">    
                 <h:outputLabel value="#{msg.logradouro}" for="logradouro"/>
                 <h:inputText id="logradouro" styleClass="form-control"
@@ -55,15 +55,19 @@
                 <h:outputLabel value="#{msg.uf}" for="uf"/>
                 <h:inputText id="uf" styleClass="form-control"
                              value="#{ownerController.owner.uf}"/>
-                
-                 <h:outputLabel value="#{msg.validatedPhone}" for="validatedPhone"/>
+            </h:panelGrid>
+
+            <h:panelGrid id="gridValidatedPhone" columns="3">  
+                <h:outputLabel value="#{msg.validatedPhone}" for="validatedPhone"/>
                 <h:inputText id="validatedPhone" styleClass="form-control"
                              value="#{ownerController.owner.validatedPhone}"/>
+                <h:commandButton id="validatePhone" value="#{msg.validatePhone}"
+                                 action="#{ownerController.validatePhone}" styleClass="btn"/>
             </h:panelGrid>
 
             <h:commandButton id="save" value="#{msg.save}"
                              action="#{ownerController.saveNewOwner}" styleClass="btn"/>
-            </h:form>
-        </ui:define>
+        </h:form>
+    </ui:define>
 
-    </ui:composition>
+</ui:composition>

@@ -47,11 +47,15 @@
                     <h:outputLabel value="#{msg.uf}" for="uf"/>
                     <h:inputText id="uf" styleClass="form-control"
                                  value="#{ownerController.owner.uf}"/>
-                    
-                    <h:outputLabel value="#{msg.validatedPhone}" for="validatedPhone"/>
-                    <h:inputText id="validatedPhone" styleClass="form-control"
-                                 value="#{ownerController.owner.validatedPhone}"/>
-                </h:panelGrid>
+                    </h:panelGrid>
+
+           <h:panelGrid id="gridValidatedPhone" columns="3">  
+                <h:outputLabel value="#{msg.validatedPhone}" for="validatedPhone"/>
+                <h:inputText id="validatedPhone" styleClass="form-control"
+                             value="#{ownerController.owner.validatedPhone}"/>
+                <h:commandButton id="validatePhone" value="#{msg.validatePhone}"
+                                 action="#{ownerController.validatePhone}" styleClass="btn"/>
+            </h:panelGrid>
 
                 <h:commandButton id="save" value="#{msg.save}"
                                  action="#{ownerController.saveEditedOwner}" styleClass="btn"/>

@@ -22,6 +22,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -36,6 +37,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 /**
  * Created with IntelliJ IDEA.
@@ -304,4 +307,29 @@ public class OwnerController implements Serializable {
             }
         }
     }
+
+    public void validatePhone() throws MalformedURLException, IOException, UnsupportedEncodingException {
+        String phone = owner.getTelephone();
+        Random r = new Random();
+        int number = r.nextInt(100000);
+        String code = String.format("%05d", number);
+        String Credential = URLEncoder.encode("C80B675E120C10BB03AAB71095D221C526127A8E", "UTF-8");
+        String Token = URLEncoder.encode("b3fA08", "UTF-8");
+        String Mobile = URLEncoder.encode("55" + phone, "UTF-8");
+        String Msg = URLEncoder.encode("Seu código de validação é: " + code, "UTF-8");
+        Msg = URLEncoder.encode(Msg, "UTF-8");
+        String connection
+                = "https://www.mpgateway.com/v_3_00/sms/smspush/enviasms.aspx?CREDENCIAL="
+                + Credential + "&TOKEN=" + Token + "&PRINCIPAL_USER=NA&AUX_USER=NA&MOBILE=" + Mobile
+                + "&SEND_PROJECT=N&MESSAGE=" + Msg;
+        URL url = new URL(connection);
+        InputStream input = url.openStream();
+        byte[] b = new byte[4];
+        input.read(b, 0, b.length);
+        String RetornoMPG = new String(b);
+        //http://www.mobipronto.com/pt-br/SMS-MT-API/documentacao-sms-mt-api-http-get-v3-00
+
+        int t = 0;
+    }
+
 }
