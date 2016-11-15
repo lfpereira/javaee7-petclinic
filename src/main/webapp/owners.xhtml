@@ -42,6 +42,13 @@
                         <h:outputText id="telephone" value="#{owner.telephone}"/>
                     </rich:column>
                     
+                     <rich:column sortBy="#{owner.validatedPhone}" sortOrder="#{ownerSortingBean.sortOrderValidatedPhone}">
+                        <f:facet name="header">
+                            <a4j:commandLink value="#{msg.validatedPhone}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToValidatedPhone}" />
+                        </f:facet>
+                        <h:outputText id="validatedPhone" value="#{owner.validatedPhone}"/>
+                    </rich:column>
+                                        
                     <rich:column sortBy="#{owner.cep}" sortOrder="#{ownerSortingBean.sortOrderCep}">
                         <f:facet name="header">
                             <a4j:commandLink value="#{msg.cep}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToCep}" />
@@ -79,12 +86,6 @@
                         <h:outputText id="uf" value="#{owner.uf}"/>
                     </rich:column>
                     
-                     <rich:column sortBy="#{owner.validatedPhone}" sortOrder="#{ownerSortingBean.sortOrderValidatedPhone}">
-                        <f:facet name="header">
-                            <a4j:commandLink value="#{msg.validatedPhone}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToValidatedPhone}" />
-                        </f:facet>
-                        <h:outputText id="validatedPhone" value="#{owner.validatedPhone}"/>
-                    </rich:column>
                     
                 </rich:dataTable>
                 <rich:dataScroller for="ownersTable"

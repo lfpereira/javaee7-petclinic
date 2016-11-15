@@ -25,7 +25,10 @@
                                  value="#{ownerController.owner.city}"/>
                     <h:outputLabel value="#{msg.telephone}" for="telephone"/>
                     <h:outputText id="telephone"
-                                 value="#{ownerController.owner.telephone}"/>
+                                 value="#{ownerController.owner.telephone}"/>                    
+                     <h:outputLabel value="#{msg.validatedPhone}" for="validatedPhone"/>
+                    <h:outputText id="validatedPhone"
+                                 value="#{ownerController.owner.validatedPhone}"/>   
                      <h:outputLabel value="#{msg.cep}" for="cep"/>
                     <h:outputText id="cep"
                                  value="#{ownerController.owner.cep}"/>
@@ -44,12 +47,6 @@
                     <h:outputLabel value="#{msg.uf}" for="uf"/>
                     <h:outputText id="uf"
                                  value="#{ownerController.owner.uf}"/>
-
-                    
-                     <h:outputLabel value="#{msg.validatedPhone}" for="validatedPhone"/>
-                    <h:outputText id="validatedPhone"
-                                 value="#{ownerController.owner.validatedPhone}"/>                    
-
                    
                     <h:commandButton id="edit" value="#{msg.editOwner}" style="float: left"
                                      action="#{ownerController.getEditForm()}" styleClass="btn"/>

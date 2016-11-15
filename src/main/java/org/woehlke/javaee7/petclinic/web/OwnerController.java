@@ -82,8 +82,17 @@ public class OwnerController implements Serializable {
     private int scrollerPage;
     
     private String codeSMS;
-    private String statusSMS;
     
+    private String insertCode;
+
+    public String getInsertCode() {
+        return insertCode;
+    }
+
+    public void setInsertCode(String insertCode) {
+        this.insertCode = insertCode;
+    }
+
     public Visit getVisit() {
         return visit;
     }
@@ -160,13 +169,13 @@ public class OwnerController implements Serializable {
         this.owner.setLogradouro("Av");
         this.owner.setComplemento("teste");
         
-        this.owner.setValidatedPhone("False");
-        
+        //Não remover
+        this.owner.setValidatedPhone("False");        
         return "newOwner.jsf";
     }
 
     public String saveNewOwner(){
-        if (!this.owner.getValidatedPhone().equals("True")) {
+        if (this.owner.getValidatedPhone() == null || !this.owner.getValidatedPhone().equals("True")) {
             this.owner.setValidatedPhone("False");
         }
         ownerDao.addNew(this.owner);
@@ -315,6 +324,8 @@ public class OwnerController implements Serializable {
     }
 
     public void sendSMS() throws MalformedURLException, IOException, UnsupportedEncodingException {
+        this.owner.setValidatedPhone("False");
+        
         String phone = owner.getTelephone();
         Random r = new Random();
         int number = r.nextInt(100000);
@@ -330,19 +341,32 @@ public class OwnerController implements Serializable {
                 + "&SEND_PROJECT=N&MESSAGE=" + Msg;
         URL url = new URL(connection);
         InputStream input = url.openStream();
+        
+        setInsertCode("Sending SMS");
+        
         byte[] b = new byte[4];
         input.read(b, 0, b.length);
+        
         String RetornoMPG = new String(b);
         
+        if (!this.owner.getValidatedPhone().equals("True")) {
+            setInsertCode(RetornoMPG);
+        }
         //Documentação
         //http://www.mobipronto.com/pt-br/SMS-MT-API/documentacao-sms-mt-api-http-get-v3-00
-
-//        owner.setValidatedPhone(false);
-//        owner.setTelephone("teste");
-//        
-//        int t = 0;
     }
     
-     public void validatePhone() {}
-
+    public void validatePhone() {
+        if (codeSMS != null) {
+            if (codeSMS.equals(insertCode)) {
+                this.owner.setValidatedPhone("True");
+            } else {
+                this.owner.setValidatedPhone("Invalid code");
+            }
+        }
+        else
+        {
+            setInsertCode("Send SMS code before");
+        }
+    }
 }

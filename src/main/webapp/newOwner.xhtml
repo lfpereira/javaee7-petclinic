@@ -25,8 +25,7 @@
                              value="#{ownerController.owner.address}"/>
                 <h:outputLabel value="#{msg.city}" for="city"/>
                 <h:inputText id="city" styleClass="form-control"
-                             value="#{ownerController.owner.city}"/>
-               
+                             value="#{ownerController.owner.city}"/>               
             </h:panelGrid>            
              <h:panelGrid id="gridTelephone" columns="8">
                  <h:outputLabel value="#{msg.telephone}" for="telephone"/>
@@ -39,11 +38,14 @@
                                 
                       <h:commandButton id="sendSMS" value="#{msg.sendSMS}"
                                  action="#{ownerController.sendSMS}" styleClass="btn"/>
+                      
+                       <h:outputLabel value="#{msg.insertCode}" for="insertCode"/>
+                <h:inputText id="insertCode" styleClass="form-control"
+                             value="#{ownerController.insertCode}"/>
                 
                 <h:commandButton id="validatePhone" value="#{msg.validatePhone}"
                                  action="#{ownerController.validatePhone}" styleClass="btn"/>
             </h:panelGrid>
-
             <h:panelGrid id="grid2" columns="3">
                 <h:outputLabel value="#{msg.cep}" for="cep"/>
                 <h:inputText id="cep" styleClass="form-control"
