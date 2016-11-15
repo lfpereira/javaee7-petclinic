@@ -158,18 +158,7 @@ public class OwnerController implements Serializable {
     public String getNewOwnerForm(){
         this.owner = new Owner();
         
-        this.owner.setFirstName("Luis Felipe");
-        this.owner.setLastName("Pereira");
-        this.owner.setAddress("Av Pernambuco");
-        this.owner.setDistrict("Navegantes");
-        this.owner.setCity("Porto Alegre");
-        this.owner.setTelephone("5197188511");
-        this.owner.setState("RS");        
-        this.owner.setZipcode("90240000");
-        this.owner.setAddress("Av");
-        this.owner.setNumber("teste");
-        
-        //NÃ£o remover
+        //Nao remover
         this.owner.setValidatedPhone("False");        
         return "newOwner.jsf";
     }
