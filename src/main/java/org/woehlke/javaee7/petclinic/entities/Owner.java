@@ -242,7 +242,7 @@ public class Owner {
         if (pets != null ? !pets.equals(owner.pets) : owner.pets != null) return false;
         if (telephone != null ? !telephone.equals(owner.telephone) : owner.telephone != null) return false;
         if (validatedPhone != null ? !validatedPhone.equals(owner.validatedPhone) : owner.validatedPhone != null) return false;
-        //if (validatedPhone != owner.validatedPhone) return false;
+//        if (validatedPhone != owner.validatedPhone) return false;
         return true;
     }
 
@@ -256,6 +256,8 @@ public class Owner {
         result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
         result = 31 * result + (pets != null ? pets.hashCode() : 0);
         result = 31 * result + (validatedPhone != null ? validatedPhone.hashCode() : 0);
+//         result = 31 * result + String.valueOf(validatedPhone).hashCode();
+       
         return result;
     }
 

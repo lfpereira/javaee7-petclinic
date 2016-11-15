@@ -80,7 +80,10 @@ public class OwnerController implements Serializable {
 
     private Visit visit;
     private int scrollerPage;
-
+    
+    private String codeSMS;
+    private String statusSMS;
+    
     public Visit getVisit() {
         return visit;
     }
@@ -163,6 +166,9 @@ public class OwnerController implements Serializable {
     }
 
     public String saveNewOwner(){
+        if (!this.owner.getValidatedPhone().equals("True")) {
+            this.owner.setValidatedPhone("False");
+        }
         ownerDao.addNew(this.owner);
         this.ownerList = ownerDao.getAll();
         return "owners.jsf";
@@ -308,15 +314,15 @@ public class OwnerController implements Serializable {
         }
     }
 
-    public void validatePhone() throws MalformedURLException, IOException, UnsupportedEncodingException {
+    public void sendSMS() throws MalformedURLException, IOException, UnsupportedEncodingException {
         String phone = owner.getTelephone();
         Random r = new Random();
         int number = r.nextInt(100000);
-        String code = String.format("%05d", number);
+        codeSMS = String.format("%05d", number);
         String Credential = URLEncoder.encode("C80B675E120C10BB03AAB71095D221C526127A8E", "UTF-8");
         String Token = URLEncoder.encode("b3fA08", "UTF-8");
         String Mobile = URLEncoder.encode("55" + phone, "UTF-8");
-        String Msg = URLEncoder.encode("Seu código de validação é: " + code, "UTF-8");
+        String Msg = URLEncoder.encode("Seu código de validação é: " + codeSMS, "UTF-8");
         Msg = URLEncoder.encode(Msg, "UTF-8");
         String connection
                 = "https://www.mpgateway.com/v_3_00/sms/smspush/enviasms.aspx?CREDENCIAL="
@@ -327,9 +333,16 @@ public class OwnerController implements Serializable {
         byte[] b = new byte[4];
         input.read(b, 0, b.length);
         String RetornoMPG = new String(b);
+        
+        //Documentação
         //http://www.mobipronto.com/pt-br/SMS-MT-API/documentacao-sms-mt-api-http-get-v3-00
 
-        int t = 0;
+//        owner.setValidatedPhone(false);
+//        owner.setTelephone("teste");
+//        
+//        int t = 0;
     }
+    
+     public void validatePhone() {}
 
 }
