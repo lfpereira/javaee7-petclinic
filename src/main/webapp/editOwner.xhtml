@@ -39,12 +39,13 @@
                                      action="#{ownerController.validatePhone}" styleClass="btn"/>
                 </h:panelGrid>
                 
-                <h:panelGrid id="gridZipcode" columns="3">
+                <h:panelGrid id="gridZipcode" columns="4">
                     <h:outputLabel value="#{msg.zipcode}" for="zipcode"/>
                     <h:inputText id="zipcode" styleClass="form-control"
                                  value="#{ownerController.owner.zipcode}"/>
                     <h:commandButton id="search" value="#{msg.search}"
                                      action="#{ownerController.searchZipcode}" styleClass="btn"/>
+                    <h:outputLabel value="#{ownerController.zipMessage}"/>
                     <p>
                         <font size="1">
                             <b> (Somente números) </b>

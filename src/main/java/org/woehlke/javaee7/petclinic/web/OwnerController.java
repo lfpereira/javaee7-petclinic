@@ -76,6 +76,8 @@ public class OwnerController implements Serializable {
     
     private String insertCode;
 
+    private String zipMessage;
+    
     public String getInsertCode() {
         return insertCode;
     }
@@ -84,6 +86,14 @@ public class OwnerController implements Serializable {
         this.insertCode = insertCode;
     }
 
+    public String getZipMessage() {
+        return zipMessage;
+    }
+
+    public void setZipMessage(String zipMessage) {
+        this.zipMessage = zipMessage;
+    }
+    
     public Visit getVisit() {
         return visit;
     }
@@ -159,7 +169,7 @@ public class OwnerController implements Serializable {
         this.owner.setAddress("Av");
         this.owner.setNumber("teste");
         
-        //Não remover
+        //NÃ£o remover
         this.owner.setValidatedPhone("False");        
         return "newOwner.jsf";
     }
@@ -253,39 +263,56 @@ public class OwnerController implements Serializable {
         return scrollerPage;
     }
     
-    public void searchZipcode() throws MalformedURLException, IOException{
-        URL url = new URL("http://viacep.com.br/ws/" + owner.getZipcode() + "/json/");
+    public void searchZipcode() throws MalformedURLException, IOException {
+        setZipMessage("");
+        String zipCode = owner.getZipcode();
+
+        try {
+            int zip = Integer.parseInt(zipCode);
+            if (String.valueOf(zip).length() != 8) {
+                setZipMessage("Invalid ZipCode");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            setZipMessage("Invalid ZipCode");
+            return;
+        }
+
+        URL url = new URL("http://viacep.com.br/ws/" + zipCode + "/json/");
         try (InputStream is = url.openStream();
-        JsonParser parser = Json.createParser(is)) {
-        while (parser.hasNext()) {
-            Event e = parser.next();
-            if (e == Event.KEY_NAME) {
-                switch (parser.getString()) {
-                    case "cep":
-                        parser.next();
-                        owner.setZipcode(parser.getString());
-                        //System.out.print(": ");
-                    break;
-                    case "logradouro":
-                        parser.next();
-                        owner.setAddress(parser.getString());
-                    break;
-                    case "complemento":
-                        parser.next();
-                        owner.setNumber(parser.getString());
-                    break;
-                    case "bairro":
-                        parser.next();
-                        owner.setDistrict(parser.getString());
-                    break;
-                    case "localidade":
-                        parser.next();
-                        owner.setCity(parser.getString());
-                    break;
-                    case "uf":
-                        parser.next();
-                        owner.setState(parser.getString());
-                    break;
+                JsonParser parser = Json.createParser(is)) {            
+            while (parser.hasNext()) {
+                Event e = parser.next();
+                if (e == Event.KEY_NAME) {
+                    switch (parser.getString()) {
+                        case "erro":
+                            parser.next();
+                            setZipMessage("ZipCode does not exist");
+                            break;
+                        case "cep":
+                            parser.next();
+                            owner.setZipcode(parser.getString());
+                            break;
+                        case "logradouro":
+                            parser.next();
+                            owner.setAddress(parser.getString());
+                            break;
+                        case "complemento":
+                            parser.next();
+                            owner.setNumber(parser.getString());
+                            break;
+                        case "bairro":
+                            parser.next();
+                            owner.setDistrict(parser.getString());
+                            break;
+                        case "localidade":
+                            parser.next();
+                            owner.setCity(parser.getString());
+                            break;
+                        case "uf":
+                            parser.next();
+                            owner.setState(parser.getString());
+                            break;
                     }
                 }
             }
@@ -302,7 +329,7 @@ public class OwnerController implements Serializable {
         String Credential = URLEncoder.encode("C80B675E120C10BB03AAB71095D221C526127A8E", "UTF-8");
         String Token = URLEncoder.encode("b3fA08", "UTF-8");
         String Mobile = URLEncoder.encode("55" + phone, "UTF-8");
-        String Msg = URLEncoder.encode("Seu código de validação é: " + codeSMS, "UTF-8");
+        String Msg = URLEncoder.encode("Seu cÃ³digo de validaÃ§Ã£o Ã©: " + codeSMS, "UTF-8");
         Msg = URLEncoder.encode(Msg, "UTF-8");
         String connection
                 = "https://www.mpgateway.com/v_3_00/sms/smspush/enviasms.aspx?CREDENCIAL="
@@ -321,7 +348,7 @@ public class OwnerController implements Serializable {
         if (!this.owner.getValidatedPhone().equals("True")) {
             setInsertCode(RetornoMPG);
         }
-        //Documentação
+        //DocumentaÃ§Ã£o
         //http://www.mobipronto.com/pt-br/SMS-MT-API/documentacao-sms-mt-api-http-get-v3-00
     }
     
