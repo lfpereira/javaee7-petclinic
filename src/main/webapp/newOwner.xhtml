@@ -46,6 +46,11 @@
                              value="#{ownerController.owner.zipcode}"/>
                 <h:commandButton id="search" value="#{msg.search}"
                                  action="#{ownerController.searchZipcode}" styleClass="btn"/>
+                <p>
+                    <font size="1">
+                        <b> (Somente números) </b>
+                    </font>
+                </p>
             </h:panelGrid>
 
             <h:panelGrid id="gridAddress" columns="2">    

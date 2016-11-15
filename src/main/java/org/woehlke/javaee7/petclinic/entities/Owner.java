@@ -53,14 +53,12 @@ public class Owner {
     @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String lastName;
-
-//INICIO DA MODIFICAÇÃO - 04/11    
+  
     @Column(name = "zipcode")
     @NotEmpty
     private String zipcode;
     
     @Column(name = "address")
-    @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String address;
     
@@ -72,14 +70,13 @@ public class Owner {
     private String district;
     
     @Column(name = "city")
-    @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String city;
     
     @Column(name = "state")
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String state;
-// MODIFICADO ATÉ AQUI!!!
+
     @Column(name = "telephone")
     @NotEmpty
     @Digits(fraction = 0, integer = 11)
