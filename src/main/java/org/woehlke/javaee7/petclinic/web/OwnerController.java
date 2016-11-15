@@ -18,9 +18,6 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
@@ -31,12 +28,6 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.json.stream.JsonParser;
 import javax.json.stream.JsonParser.Event;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -160,14 +151,13 @@ public class OwnerController implements Serializable {
         this.owner.setFirstName("Luis Felipe");
         this.owner.setLastName("Pereira");
         this.owner.setAddress("Av Pernambuco");
-        this.owner.setBairro("Navegantes");
+        this.owner.setDistrict("Navegantes");
         this.owner.setCity("Porto Alegre");
-        this.owner.setLocalidade("localidade");
         this.owner.setTelephone("5197188511");
-        this.owner.setUf("RS");        
-        this.owner.setCep("90240000");
-        this.owner.setLogradouro("Av");
-        this.owner.setComplemento("teste");
+        this.owner.setState("RS");        
+        this.owner.setZipcode("90240000");
+        this.owner.setAddress("Av");
+        this.owner.setNumber("teste");
         
         //Não remover
         this.owner.setValidatedPhone("False");        
@@ -264,7 +254,7 @@ public class OwnerController implements Serializable {
     }
     
     public void buscarCEP() throws MalformedURLException, IOException{
-        URL url = new URL("http://viacep.com.br/ws/" + owner.getCep() + "/json/");
+        URL url = new URL("http://viacep.com.br/ws/" + owner.getZipcode() + "/json/");
         try (InputStream is = url.openStream();
         JsonParser parser = Json.createParser(is)) {
         while (parser.hasNext()) {
@@ -273,28 +263,28 @@ public class OwnerController implements Serializable {
                 switch (parser.getString()) {
                     case "cep":
                         parser.next();
-                        owner.setCep(parser.getString());
+                        owner.setZipcode(parser.getString());
                         //System.out.print(": ");
                     break;
                     case "logradouro":
                         parser.next();
-                        owner.setLogradouro(parser.getString());
+                        owner.setAddress(parser.getString());
                     break;
                     case "complemento":
                         parser.next();
-                        owner.setComplemento(parser.getString());
+                        owner.setNumber(parser.getString());
                     break;
                     case "bairro":
                         parser.next();
-                        owner.setBairro(parser.getString());
+                        owner.setDistrict(parser.getString());
                     break;
                     case "localidade":
                         parser.next();
-                        owner.setLocalidade(parser.getString());
+                        owner.setCity(parser.getString());
                     break;
                     case "uf":
                         parser.next();
-                        owner.setUf(parser.getString());
+                        owner.setState(parser.getString());
                     break;
                     }
                 }

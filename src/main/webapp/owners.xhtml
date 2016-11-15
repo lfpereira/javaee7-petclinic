@@ -49,41 +49,29 @@
                         <h:outputText id="validatedPhone" value="#{owner.validatedPhone}"/>
                     </rich:column>
                                         
-                    <rich:column sortBy="#{owner.cep}" sortOrder="#{ownerSortingBean.sortOrderCep}">
+                    <rich:column sortBy="#{owner.zipcode}" sortOrder="#{ownerSortingBean.sortOrderZipcode}">
                         <f:facet name="header">
-                            <a4j:commandLink value="#{msg.cep}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToCep}" />
+                            <a4j:commandLink value="#{msg.zipcode}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToZipcode}" />
                         </f:facet>
-                        <h:outputText id="cep" value="#{owner.cep}"/>
+                        <h:outputText id="zipcode" value="#{owner.zipcode}"/>
                     </rich:column>
-                    <rich:column sortBy="#{owner.logradouro}" sortOrder="#{ownerSortingBean.sortOrderLogradouro}">
+                    <rich:column sortBy="#{owner.number}" sortOrder="#{ownerSortingBean.sortOrderNumber}">
                         <f:facet name="header">
-                            <a4j:commandLink value="#{msg.logradouro}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToLogradouro}" />
+                            <a4j:commandLink value="#{msg.number}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToNumber}" />
                         </f:facet>
-                        <h:outputText id="logradouro" value="#{owner.logradouro}"/>
+                        <h:outputText id="number" value="#{owner.number}"/>
                     </rich:column>
-                    <rich:column sortBy="#{owner.complemento}" sortOrder="#{ownerSortingBean.sortOrderComplemento}">
+                    <rich:column sortBy="#{owner.district}" sortOrder="#{ownerSortingBean.sortOrderDistrict}">
                         <f:facet name="header">
-                            <a4j:commandLink value="#{msg.complemento}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToComplemento}" />
+                            <a4j:commandLink value="#{msg.district}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToDistrict}" />
                         </f:facet>
-                        <h:outputText id="complemento" value="#{owner.complemento}"/>
+                        <h:outputText id="district" value="#{owner.district}"/>
                     </rich:column>
-                    <rich:column sortBy="#{owner.bairro}" sortOrder="#{ownerSortingBean.sortOrderBairro}">
+                    <rich:column sortBy="#{owner.state}" sortOrder="#{ownerSortingBean.sortOrderState}">
                         <f:facet name="header">
-                            <a4j:commandLink value="#{msg.bairro}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToBairro}" />
+                            <a4j:commandLink value="#{msg.state}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToState}" />
                         </f:facet>
-                        <h:outputText id="bairro" value="#{owner.bairro}"/>
-                    </rich:column>
-                    <rich:column sortBy="#{owner.localidade}" sortOrder="#{ownerSortingBean.sortOrderLocalidade}">
-                        <f:facet name="header">
-                            <a4j:commandLink value="#{msg.localidade}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToLocalidade}" />
-                        </f:facet>
-                        <h:outputText id="localidade" value="#{owner.localidade}"/>
-                    </rich:column>
-                    <rich:column sortBy="#{owner.uf}" sortOrder="#{ownerSortingBean.sortOrderUF}">
-                        <f:facet name="header">
-                            <a4j:commandLink value="#{msg.uf}" render="ownersTable" action="#{ownerSortingBean.setSortOrderToUF}" />
-                        </f:facet>
-                        <h:outputText id="uf" value="#{owner.uf}"/>
+                        <h:outputText id="state" value="#{owner.state}"/>
                     </rich:column>
                     
                     

@@ -20,24 +20,20 @@ public class OwnerSortingBean implements Serializable {
     private SortOrder sortOrderCity = SortOrder.unsorted;
     private SortOrder sortOrderTelephone = SortOrder.unsorted;
     private SortOrder sortOrderValidatedPhone = SortOrder.unsorted;
-    private SortOrder sortOrderCep = SortOrder.unsorted;
-    private SortOrder sortOrderLogradouro = SortOrder.unsorted;
-    private SortOrder sortOrderComplemento = SortOrder.unsorted;
-    private SortOrder sortOrderBairro = SortOrder.unsorted;
-    private SortOrder sortOrderLocalidade = SortOrder.unsorted;
-    private SortOrder sortOrderUF = SortOrder.unsorted;
+    private SortOrder sortOrderZipcode= SortOrder.unsorted;
+    private SortOrder sortOrderNumber = SortOrder.unsorted;
+    private SortOrder sortOrderDistrict = SortOrder.unsorted;
+    private SortOrder sortOrderState = SortOrder.unsorted;
     
     public void setSortOrderToName(){
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
         sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
+        sortOrderZipcode = SortOrder.unsorted;
+        sortOrderNumber = SortOrder.unsorted;
+        sortOrderDistrict = SortOrder.unsorted;
+        sortOrderState = SortOrder.unsorted;
         if(sortOrderName==SortOrder.ascending){
             sortOrderName = SortOrder.descending;
         } else {
@@ -50,12 +46,10 @@ public class OwnerSortingBean implements Serializable {
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
         sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
+        sortOrderZipcode = SortOrder.unsorted;
+        sortOrderNumber = SortOrder.unsorted;
+        sortOrderDistrict = SortOrder.unsorted;
+        sortOrderState = SortOrder.unsorted;
         if(sortOrderAddress == SortOrder.ascending){
             sortOrderAddress = SortOrder.descending;
         } else {
@@ -68,12 +62,10 @@ public class OwnerSortingBean implements Serializable {
         sortOrderAddress = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
         sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
+        sortOrderZipcode = SortOrder.unsorted;
+        sortOrderNumber = SortOrder.unsorted;
+        sortOrderDistrict = SortOrder.unsorted;
+        sortOrderState = SortOrder.unsorted;
         if(sortOrderCity == SortOrder.ascending){
             sortOrderCity = SortOrder.descending;
         } else {
@@ -85,13 +77,11 @@ public class OwnerSortingBean implements Serializable {
         sortOrderName = SortOrder.unsorted;
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
+        sortOrderZipcode = SortOrder.unsorted;
         sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
+        sortOrderNumber= SortOrder.unsorted;
+        sortOrderDistrict = SortOrder.unsorted;
+        sortOrderState = SortOrder.unsorted;
         if(sortOrderTelephone == SortOrder.ascending){
             sortOrderTelephone = SortOrder.descending;
         } else {
@@ -103,13 +93,11 @@ public class OwnerSortingBean implements Serializable {
         sortOrderName = SortOrder.unsorted;
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
+        sortOrderZipcode = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
+        sortOrderNumber = SortOrder.unsorted;
+        sortOrderDistrict = SortOrder.unsorted;
+        sortOrderState = SortOrder.unsorted;
         if(sortOrderValidatedPhone == SortOrder.ascending){
             sortOrderValidatedPhone = SortOrder.descending;
         } else {
@@ -117,111 +105,67 @@ public class OwnerSortingBean implements Serializable {
         }
     }
     
-    public void setSortOrderToCep(){
+    public void setSortOrderToZipcode(){
         sortOrderName = SortOrder.unsorted;
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
         sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
-        if(sortOrderCep == SortOrder.ascending){
-            sortOrderCep = SortOrder.descending;
+        sortOrderNumber = SortOrder.unsorted;
+        sortOrderDistrict = SortOrder.unsorted;
+        sortOrderState = SortOrder.unsorted;
+        if(sortOrderZipcode == SortOrder.ascending){
+            sortOrderZipcode = SortOrder.descending;
         } else {
-            sortOrderCep = SortOrder.ascending;
+            sortOrderZipcode = SortOrder.ascending;
         }
     }
     
-    public void setSortOrderToLogradouro(){
+    public void setSortOrderToNumber(){
         sortOrderName = SortOrder.unsorted;
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
         sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
-        if(sortOrderLogradouro == SortOrder.ascending){
-            sortOrderLogradouro = SortOrder.descending;
+        sortOrderZipcode = SortOrder.unsorted;
+        sortOrderDistrict= SortOrder.unsorted;
+        sortOrderState= SortOrder.unsorted;
+        if(sortOrderNumber == SortOrder.ascending){
+            sortOrderNumber = SortOrder.descending;
         } else {
-            sortOrderLogradouro = SortOrder.ascending;
+            sortOrderNumber = SortOrder.ascending;
         }
     }
     
-    public void setSortOrderToComplemento(){
+    public void setSortOrderToDistrict(){
         sortOrderName = SortOrder.unsorted;
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
         sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
-        if(sortOrderComplemento == SortOrder.ascending){
-            sortOrderComplemento = SortOrder.descending;
+        sortOrderZipcode = SortOrder.unsorted;
+        sortOrderNumber = SortOrder.unsorted;
+        sortOrderState = SortOrder.unsorted;
+        if(sortOrderDistrict == SortOrder.ascending){
+            sortOrderDistrict = SortOrder.descending;
         } else {
-            sortOrderComplemento = SortOrder.ascending;
-        }
-    }
-    
-    public void setSortOrderToBairro(){
-        sortOrderName = SortOrder.unsorted;
-        sortOrderAddress = SortOrder.unsorted;
-        sortOrderCity = SortOrder.unsorted;
-        sortOrderTelephone = SortOrder.unsorted;
-        sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
-        if(sortOrderBairro == SortOrder.ascending){
-            sortOrderBairro = SortOrder.descending;
-        } else {
-            sortOrderBairro = SortOrder.ascending;
-        }
-    }
-    
-    public void setSortOrderToLocalidade(){
-        sortOrderName = SortOrder.unsorted;
-        sortOrderAddress = SortOrder.unsorted;
-        sortOrderCity = SortOrder.unsorted;
-        sortOrderTelephone = SortOrder.unsorted;
-        sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderUF = SortOrder.unsorted;
-        if(sortOrderLocalidade == SortOrder.ascending){
-            sortOrderLocalidade = SortOrder.descending;
-        } else {
-            sortOrderLocalidade = SortOrder.ascending;
+            sortOrderDistrict = SortOrder.ascending;
         }
     }
 
-    public void setSortOrderToUF(){
+    public void setSortOrderToState(){
         sortOrderName = SortOrder.unsorted;
         sortOrderAddress = SortOrder.unsorted;
         sortOrderCity = SortOrder.unsorted;
         sortOrderTelephone = SortOrder.unsorted;
         sortOrderValidatedPhone = SortOrder.unsorted;
-        sortOrderCep = SortOrder.unsorted;
-        sortOrderLogradouro = SortOrder.unsorted;
-        sortOrderComplemento = SortOrder.unsorted;
-        sortOrderBairro = SortOrder.unsorted;
-        sortOrderLocalidade = SortOrder.unsorted;
-        if(sortOrderUF == SortOrder.ascending){
-            sortOrderUF = SortOrder.descending;
+        sortOrderZipcode = SortOrder.unsorted;
+        sortOrderNumber = SortOrder.unsorted;
+        sortOrderDistrict = SortOrder.unsorted;
+        if(sortOrderState == SortOrder.ascending){
+            sortOrderState = SortOrder.descending;
         } else {
-            sortOrderUF = SortOrder.ascending;
+            sortOrderState = SortOrder.ascending;
         }
     }
     
@@ -265,52 +209,35 @@ public class OwnerSortingBean implements Serializable {
         this.sortOrderValidatedPhone = sortOrderValidatedPhone;
     }
 
-    public SortOrder getSortOrderCep() {
-        return sortOrderCep;
+    public SortOrder getSortOrderZipcode() {
+        return sortOrderZipcode;
     }
 
-    public void setSortOrderCep(SortOrder sortOrderCep) {
-        this.sortOrderCep = sortOrderCep;
+    public void setSortOrderZipcode(SortOrder sortOrderZipcode) {
+        this.sortOrderZipcode = sortOrderZipcode;
     }
 
-    public SortOrder getSortOrderLogradouro() {
-        return sortOrderLogradouro;
+    public SortOrder getSortOrderNumber() {
+        return sortOrderNumber;
     }
 
-    public void setSortOrderLogradouro(SortOrder sortOrderLogradouro) {
-        this.sortOrderLogradouro = sortOrderLogradouro;
+    public void setSortOrderNumber(SortOrder sortOrderNumber) {
+        this.sortOrderNumber = sortOrderNumber;
     }
 
-    public SortOrder getSortOrderComplemento() {
-        return sortOrderComplemento;
+    public SortOrder getSortOrderDistrict() {
+        return sortOrderDistrict;
     }
 
-    public void setSortOrderComplemento(SortOrder sortOrderComplemento) {
-        this.sortOrderComplemento = sortOrderComplemento;
+    public void setSortOrderDistrict(SortOrder sortOrderDistrict) {
+        this.sortOrderDistrict = sortOrderDistrict;
     }
 
-    public SortOrder getSortOrderBairro() {
-        return sortOrderBairro;
+    public SortOrder getSortOrderState() {
+        return sortOrderState;
     }
 
-    public void setSortOrderBairro(SortOrder sortOrderBairro) {
-        this.sortOrderBairro = sortOrderBairro;
+    public void setSortOrderState(SortOrder sortOrderState) {
+        this.sortOrderState = sortOrderState;
     }
-
-    public SortOrder getSortOrderLocalidade() {
-        return sortOrderLocalidade;
-    }
-
-    public void setSortOrderLocalidade(SortOrder sortOrderLocalidade) {
-        this.sortOrderLocalidade = sortOrderLocalidade;
-    }
-
-    public SortOrder getSortOrderUF() {
-        return sortOrderUF;
-    }
-
-    public void setSortOrderUF(SortOrder sortOrderUF) {
-        this.sortOrderUF = sortOrderUF;
-    }
-    
 }

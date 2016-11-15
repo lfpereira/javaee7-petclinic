@@ -46,24 +46,18 @@
                     <h:outputLabel value="#{msg.city}" for="city"/>
                     <h:inputText id="city" styleClass="form-control"
                                  value="#{ownerController.owner.city}"/>
-                    <h:outputLabel value="#{msg.cep}" for="cep"/>
-                    <h:inputText id="cep" styleClass="form-control"
-                                 value="#{ownerController.owner.cep}"/>
-                    <h:outputLabel value="#{msg.logradouro}" for="logradouro"/>
-                    <h:inputText id="logradouro" styleClass="form-control"
-                                 value="#{ownerController.owner.logradouro}"/>
-                    <h:outputLabel value="#{msg.complemento}" for="complemento"/>
-                    <h:inputText id="complemento" styleClass="form-control"
-                                 value="#{ownerController.owner.complemento}"/>
-                    <h:outputLabel value="#{msg.bairro}" for="bairro"/>
-                    <h:inputText id="bairro" styleClass="form-control"
-                                 value="#{ownerController.owner.bairro}"/>
-                    <h:outputLabel value="#{msg.localidade}" for="localidade"/>
-                    <h:inputText id="localidade" styleClass="form-control"
-                                 value="#{ownerController.owner.localidade}"/>
-                    <h:outputLabel value="#{msg.uf}" for="uf"/>
-                    <h:inputText id="uf" styleClass="form-control"
-                                 value="#{ownerController.owner.uf}"/>
+                    <h:outputLabel value="#{msg.zipcode}" for="zipcode"/>
+                    <h:inputText id="zipcode" styleClass="form-control"
+                                 value="#{ownerController.owner.zipcode}"/>
+                    <h:outputLabel value="#{msg.number}" for="number"/>
+                    <h:inputText id="number" styleClass="form-control"
+                                 value="#{ownerController.owner.number}"/>
+                    <h:outputLabel value="#{msg.district}" for="district"/>
+                    <h:inputText id="district" styleClass="form-control"
+                                 value="#{ownerController.owner.district}"/>
+                    <h:outputLabel value="#{msg.state}" for="state"/>
+                    <h:inputText id="state" styleClass="form-control"
+                                 value="#{ownerController.owner.state}"/>
                 </h:panelGrid>
 
                 <h:commandButton id="save" value="#{msg.save}"

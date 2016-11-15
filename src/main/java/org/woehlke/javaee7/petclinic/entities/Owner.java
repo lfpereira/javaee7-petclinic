@@ -54,38 +54,31 @@ public class Owner {
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String lastName;
 
+//INICIO DA MODIFICAÇÃO - 04/11    
+    @Column(name = "zipcode")
+    @NotEmpty
+    private String zipcode;
+    
     @Column(name = "address")
     @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String address;
-
+    
+    @Column(name = "number")
+    private String number;
+    
+    @Column(name = "district")
+    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
+    private String district;
+    
     @Column(name = "city")
     @NotEmpty
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String city;
-//INICIO DA MODIFICAÇÃO - 04/11    
-    @Column(name = "cep")
-    @NotEmpty
-    private String cep;
     
-    @Column(name = "logradouro")
+    @Column(name = "state")
     @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
-    private String logradouro;
-    
-    @Column(name = "complemento")
-    private String complemento;
-    
-    @Column(name = "bairro")
-    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
-    private String bairro;
-    
-    @Column(name = "localidade")
-    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
-    private String localidade;
-    
-    @Column(name = "uf")
-    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
-    private String uf;
+    private String state;
 // MODIFICADO ATÉ AQUI!!!
     @Column(name = "telephone")
     @NotEmpty
@@ -129,12 +122,36 @@ public class Owner {
         this.lastName = lastName;
     }
 
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public String getCity() {
@@ -145,52 +162,12 @@ public class Owner {
         this.city = city;
     }
 
-    public String getCep() {
-        return cep;
+    public String getState() {
+        return state;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getLogradouro() {
-        return logradouro;
-    }
-
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getLocalidade() {
-        return localidade;
-    }
-
-    public void setLocalidade(String localidade) {
-        this.localidade = localidade;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getTelephone() {
@@ -262,16 +239,14 @@ public class Owner {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", city='" + city + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", validatedPhone='" + validatedPhone + '\'' +
-                ", cep='" + cep + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", complemento='" + complemento + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", localidade='" + localidade + '\'' +
-                ", uf='" + uf + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", address='" + address + '\'' +
+                ", number='" + number + '\'' +
+                ", district='" + district + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
                 ", pets=" + pets +
                 '}';
     }
