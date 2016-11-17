@@ -21,24 +21,25 @@
                 <h:inputText id="lastName" styleClass="form-control"
                              value="#{ownerController.owner.lastName}"/>             
             </h:panelGrid>            
-             <h:panelGrid id="gridTelephone" columns="8">
-                 <h:outputLabel value="#{msg.telephone}" for="telephone"/>
+            <h:panelGrid id="gridTelephone" columns="9">
+                <h:outputLabel value="#{msg.telephone}" for="telephone"/>
                 <h:inputText id="telephone" styleClass="form-control"
                              value="#{ownerController.owner.telephone}"/>
-                
+
                 <h:outputLabel value="#{msg.validatedPhone}" for="validatedPhone"/>
                 <h:outputLabel id="validatedPhone" 
-                             value="#{ownerController.owner.validatedPhone}"/>
-                                
-                      <h:commandButton id="sendSMS" value="#{msg.sendSMS}"
+                               value="#{ownerController.owner.validatedPhone}"/>
+
+                <h:commandButton id="sendSMS" value="#{msg.sendSMS}"
                                  action="#{ownerController.sendSMS}" styleClass="btn"/>
-                      
-                       <h:outputLabel value="#{msg.insertCode}" for="insertCode"/>
+
+                <h:outputLabel value="#{msg.insertCode}" for="insertCode"/>
                 <h:inputText id="insertCode" styleClass="form-control"
                              value="#{ownerController.insertCode}"/>
-                
+
                 <h:commandButton id="validatePhone" value="#{msg.validatePhone}"
                                  action="#{ownerController.validatePhone}" styleClass="btn"/>
+                <h:outputLabel value="#{ownerController.smsMessage}"/>                
             </h:panelGrid>
             <h:panelGrid id="gridZipcode" columns="4">
                 <h:outputLabel value="#{msg.zipcode}" for="zipcode"/>

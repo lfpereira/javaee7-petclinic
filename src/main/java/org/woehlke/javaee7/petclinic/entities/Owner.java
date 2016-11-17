@@ -24,9 +24,6 @@ import javax.persistence.GeneratedValue;
 import javax.validation.constraints.Digits;
 
 import java.util.*;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,7 +1,9 @@
 package org.woehlke.javaee7.petclinic.web;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import org.woehlke.javaee7.petclinic.dao.OwnerDao;
 import org.woehlke.javaee7.petclinic.dao.PetDao;
 import org.woehlke.javaee7.petclinic.dao.PetTypeDao;
@@ -21,15 +23,14 @@ import java.net.URL;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.json.stream.JsonParser;
 import javax.json.stream.JsonParser.Event;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -76,8 +77,6 @@ public class OwnerController implements Serializable {
     
     private String insertCode;
 
-    private String zipMessage;
-    
     public String getInsertCode() {
         return insertCode;
     }
@@ -85,6 +84,18 @@ public class OwnerController implements Serializable {
     public void setInsertCode(String insertCode) {
         this.insertCode = insertCode;
     }
+    
+    private String smsMessage;
+
+    public String getSmsMessage() {
+        return smsMessage;
+    }
+
+    public void setSmsMessage(String smsMessage) {
+        this.smsMessage = smsMessage;
+    }
+    
+    private String zipMessage;
 
     public String getZipMessage() {
         return zipMessage;
@@ -310,34 +321,101 @@ public class OwnerController implements Serializable {
 
     public void sendSMS() throws MalformedURLException, IOException, UnsupportedEncodingException {
         this.owner.setValidatedPhone("False");
+        setSmsMessage("");
+        
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date today = new Date();
+        String date = df.format(today);
         
         String phone = owner.getTelephone();
         Random r = new Random();
         int number = r.nextInt(100000);
         codeSMS = String.format("%05d", number);
+        
         String Credential = URLEncoder.encode("C80B675E120C10BB03AAB71095D221C526127A8E", "UTF-8");
         String Token = URLEncoder.encode("b3fA08", "UTF-8");
         String Mobile = URLEncoder.encode("55" + phone, "UTF-8");
-        String Msg = URLEncoder.encode("Seu cÃ³digo de validaÃ§Ã£o Ã©: " + codeSMS, "UTF-8");
-        Msg = URLEncoder.encode(Msg, "UTF-8");
+        String Msg = URLEncoder.encode("Seu código de validação solicitado em " + date + " é: " + codeSMS, "UTF-8");
         String connection
-                = "https://www.mpgateway.com/v_3_00/sms/smspush/enviasms.aspx?CREDENCIAL="
+                = "http://www.mpgateway.com/v_3_00/sms/smspush/enviasms.aspx?CREDENCIAL="
                 + Credential + "&TOKEN=" + Token + "&PRINCIPAL_USER=NA&AUX_USER=NA&MOBILE=" + Mobile
                 + "&SEND_PROJECT=N&MESSAGE=" + Msg;
+
         URL url = new URL(connection);
+
+        setSmsMessage("Sending SMS");
+
         InputStream input = url.openStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(input));
         
-        setInsertCode("Sending SMS");
+        String retorno = "";
         
-        byte[] b = new byte[4];
-        input.read(b, 0, b.length);
-        
-        String RetornoMPG = new String(b);
-        
-        if (!this.owner.getValidatedPhone().equals("True")) {
-            setInsertCode(RetornoMPG);
+        String linha;
+        while ((linha = br.readLine()) != null) {
+            retorno += linha;
         }
-        //DocumentaÃ§Ã£o
+
+        retorno = retorno.trim();
+
+        if (retorno.length() > 3) {
+            retorno = retorno.substring(0, 3);
+        }
+
+        switch (retorno) {
+            case "000":
+                retorno += " Mensagem enviada com sucesso";
+                break;
+            case "X01":
+                retorno += " Um ou mais parâmetros com erro";
+                break;
+            case "X02":
+                retorno += " Um ou mais parâmetros com erro";
+                break;
+            case "001":
+                retorno += " Credencial inválida";
+                break;
+            case "005":
+                retorno += " MOBILE com formato inválido";
+                break;
+            case "007":
+                retorno += " SEND_PROJECT com formato inválido";
+                break;
+            case "008":
+                retorno += " MESSAGE ou MESSAGE + NOME_PROJETO com mais de 160 posições ou SMS concatenado com mais de 1000 posições";
+                break;
+            case "009":
+                retorno += " Créditos insuficientes em conta";
+                break;
+            case "010":
+                retorno += " Gateway SMS da conta bloqueado";
+                break;
+            case "012":
+                retorno += " MOBILE correto, porém com crítica";
+                break;
+            case "013":
+                retorno += " Conteúdo da mensagem inválido ou vazio";
+                break;
+            case "015":
+                retorno += " País de destino sem cobertura";
+                break;
+            case "016":
+                retorno += " MOBILE com código de área inválido";
+                break;
+            case "018":
+                retorno += " MOBILE se encontra em lista negra";
+                break;
+            case "019":
+                retorno += " TOKEN inválido";
+                break;
+            case "022":
+                retorno += " Conta atingiu o limite de envio do dia";
+                break;
+        }
+
+        if (!this.owner.getValidatedPhone().equals("True")) {
+            setSmsMessage(retorno);
+        }
+        //Documentação
         //http://www.mobipronto.com/pt-br/SMS-MT-API/documentacao-sms-mt-api-http-get-v3-00
     }
     
@@ -345,13 +423,14 @@ public class OwnerController implements Serializable {
         if (codeSMS != null) {
             if (codeSMS.equals(insertCode)) {
                 this.owner.setValidatedPhone("True");
+                setSmsMessage("Successfully validated");
             } else {
-                this.owner.setValidatedPhone("Invalid code");
+                setSmsMessage("Invalid code");
             }
         }
         else
         {
-            setInsertCode("Send SMS code before");
+            setSmsMessage("Send SMS code before");
         }
     }
 }

@@ -37,6 +37,7 @@
                                  value="#{ownerController.insertCode}"/>
                     <h:commandButton id="validatePhone" value="#{msg.validatePhone}"
                                      action="#{ownerController.validatePhone}" styleClass="btn"/>
+                    <h:outputLabel value="#{ownerController.smsMessage}" />  
                 </h:panelGrid>
                 
                 <h:panelGrid id="gridZipcode" columns="4">
